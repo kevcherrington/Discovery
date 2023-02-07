@@ -14,8 +14,23 @@ logging:
         discovery: OFF
 
 spring:
+  application:
+    name: Discovery
   cloud:
     config:
       server:
         git:
           uri: https://github.com/kevcherrington/config_repo.git
+#           how to authenticate with a username and password
+#           username: user
+#           password: password
+
+          search-paths:
+            - microservices
+
+        #       The prefix is required to set the base for the config server but not change the base path for Discovery
+#       This is needed because Netflix Eureka and Spring Cloud Config have conflicting paths.
+        prefix: /config
+  profiles:
+    default: local
+
